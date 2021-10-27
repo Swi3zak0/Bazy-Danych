@@ -1,0 +1,348 @@
+login as: siwekp
+siwekp@213.184.8.36's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                                                                                                                                              x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Oct 27 11:43:47 2021 from 213.184.8.151
+siwekp@bad2:~$ mysql -u siwekp -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 714
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> ls
+    ->
+    ->
+    -> show databases
+    -> ^C
+mysql> show databases
+    -> ^C
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
++--------------------+
+2 rows in set (1.00 sec)
+
+mysql> use siwekp
+Database changed
+mysql> show tables
+    -> ^C
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> create table pracownik (id_pracownika INT PRIMARY KEY,imie VARCHAR(40) NOT NULL, nazwisko VARCHAR(70) NOT NULL, zarobki DOUBLE(10,2) DEFAULT(4000), data_urodzenia DATE NOT NULL, stanowisko ENUM ('manager','kierownik','sprzedawca','kasjer')
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table pracownik (id_pracownika INT PRIMARY KEY,imie VARCHAR(40) NOT NULL, nazwisko VARCHAR(70) NOT NULL, zarobki DOUBLE(10,2) DEFAULT(4000), data_urodzenia DATE NOT NULL, stanowisko ENUM ('manager','kierownik','sprzedawca','kasjer'));
+Query OK, 0 rows affected, 1 warning (0.16 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> show siwekp;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'siwekp' at line 1
+mysql> insert INTO pracownik VALUES (1,'Jan','Kowalski','3000','1999-01-01','kasjer');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> CREATE TABLE projekt (id_projektu INT PRIMARY KEY, nazwa VARCHAR(40),id_pracownika INT, FOREIGN KEY(id_pracownika) REFERENCES pracownik(id_pracownika));
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> CREATE CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak
+    '> ','kobieta'), data_ur DATE NOT NULL, wiek UNSIGNED);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodza                                                                                                                          j ENU' at line 1
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak
+','kobieta'), data_ur DATE NOT NULL, wiek UNSIGNED);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSIGNED)' at line 2
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak
+','kobieta'), data_ur DATE NOT NULL, wiek UNSIGNED);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSIGNED)' at line 2
+mysql>
+mysql>
+mysql>
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak
+','kobieta'), data_ur DATE NOT NULL, wiek UNSIGNED);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSIGNED)' at line 2
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE NOT NULL, wiek UNSIGNED);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSIGNED)' at line 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE NOT NULL, wiek UNSIGNED);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNSIGNED)' at line 1
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY, nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE NOT NULL, wiek INT UNSIGNED);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY AUTO_INCREMENT,^Czwa VARCHAR(40), rodzaj ENUM('wikt                                                                                                                          mysql> DELETE projekt2
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near '' at line 1
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
++--------------------+
+2 rows in set (0.03 sec)
+
+mysql> DELATE TABLE projekt2
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'DELATE TABLE projekt2' at line 1
+mysql> DROP TABLE projekt2
+    -> ;
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY AUTO_INCREMENT,nazwa VARCHAR(40), rodzaj ENUM('wiktak','ko                                                                                                                          bieta'), data_ur DATE NOT NULL, wiek INT UNSIGNED);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> CREATE TABLE projekt2 (id_postaci INT PRIMARY KEY AUTO_INCREMENT,nazwa VARCHAR(40), rodzaj ENUM('wiktak','ko                                                                                                                          bieta'), data_ur DATE NOT NULL, wiek INT UNSIGNED);
+ERROR 1050 (42S01): Table 'projekt2' already exists
+mysql> DROP TABLE projekt2
+    -> ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE postac (id_postaci INT PRIMARY KEY AUTO_INCREMENT,nazwa VARCHAR(40), rodzaj ENUM('wiktak','kobi
+eta'), data_ur DATE NOT NULL, wiek INT UNSIGNED);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> INSERT INTO postac VALUES (1, 'Bjorn','wiking','1999-01-01','25');
+ERROR 1265 (01000): Data truncated for column 'rodzaj' at row 1
+mysql> INSERT INTO postac VALUES (1, 'Bjorn',wiking,'1999-01-01','25');
+ERROR 1054 (42S22): Unknown column 'wiking' in 'field list'
+mysql> INSERT INTO postac VALUES (1, 'Bjorn','wiking','1999-01-01','25');
+ERROR 1265 (01000): Data truncated for column 'rodzaj' at row 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> DROP TABLE postac
+    -> ;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> CREATE TABLE postac (id_postaci INT PRIMARY KEY AUTO_INCREMENT,nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak','kobieta'), data_ur DATE NOT NULL, wiek INT UNSIGNED);5');                                                              Query OK, 0 rows affected (0.10 sec)NT UNSIGNED);
+
+mysql> INSERT INTO postac VALUES (1, 'Bjorn','wiking','1999-01-01','25');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO postac VALUES (2,'Drozd','ptak','2000-01-01','10');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac VALUES (3,'Tesciowa','kobieta','1874-10-20');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO postac VALUES (3,'Tesciowa','kobieta','1874-10-20','40');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> UPDATE postac SET wiek = '88';
+Query OK, 3 rows affected (0.00 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> DROP TABLE postac
+    -> ;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE postac (id_postaci INT PRIMARY KEY AUTO_INCREMENT,nazwa VARCHAR(40), rodzaj ENUM('wiking','ptak                                                                                                                          ','kobieta'), data_ur DATE NOT NULL, wiek INT UNSIGNED);
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> INSERT INTO postac VALUES (1, 'Bjorn','wiking','1999-01-01','25');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac VALUES (2,'Drozd','ptak','2000-01-01','10');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO postac VALUES (3,'Tesciowa','kobieta','1874-10-20','40');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE postac SET wiek = '88' WHERE nazwa = "Tesciowa";
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> DESC postac
+    -> ;
++------------+---------------------------------+------+-----+---------+----------------+
+| Field      | Type                            | Null | Key | Default | Extra          |
++------------+---------------------------------+------+-----+---------+----------------+
+| id_postaci | int                             | NO   | PRI | NULL    | auto_increment |
+| nazwa      | varchar(40)                     | YES  |     | NULL    |                |
+| rodzaj     | enum('wiking','ptak','kobieta') | YES  |     | NULL    |                |
+| data_ur    | date                            | NO   |     | NULL    |                |
+| wiek       | int unsigned                    | YES  |     | NULL    |                |
++------------+---------------------------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM postac
+    -> ;
++------------+----------+---------+------------+------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek |
++------------+----------+---------+------------+------+
+|          1 | Bjorn    | wiking  | 1999-01-01 |   25 |
+|          2 | Drozd    | ptak    | 2000-01-01 |   10 |
+|          3 | Tesciowa | kobieta | 1874-10-20 |   88 |
++------------+----------+---------+------------+------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT,
+    -> pojemnosc VARCHAR(40) UNSIGNED,
+    -> kolor ENUM ('rozowy','czerwony','teczowy','zolty'),
+    -> id_wlasciciela INT, FOREIGN KEY (id_wlasiciela) REFERENCS postac(id_postaci) ON DELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'UNSIGNED,
+kolor ENUM ('rozowy','czerwony','teczowy','zolty'),
+id_wlasciciela INT' at line 2
+mysql> mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT D, kolor, kolor ENUM ('rozowy','czerwony','teczolty'), id_wlasciciela INT, FOREIGN KEY (id_wlasiciela) REFERENCS postac(id_postaci) ON cELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARCHARINT D, kolor ENUM ('rozowy','czerwony','teczowy','zolty'), id_wlasciciela' at line 1
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy','czerwony','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY (id_wlasiciela) REFERENCS postac(id_postaci) ON DELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'REFERENCS postac(id_postaci) ON DELETE CASCADE)' at line 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy','czerwony','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY (id_wlasiciela) REFERENCS postac(id_postaci) ON DELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'REFERENCS postac(id_postaci) ON DELETE CASCADE)' at line 1
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy','czerwony','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY (id_wlasiciela) REFERENCES postac(id_postaci) ON DELETE CASCADE);
+ERROR 1072 (42000): Key column 'id_wlasiciela' doesn't exist in table
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy','czerwony','teczowy','zolty'), id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE
+CASCADE);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> UPDATE walizka SET DEFAULT kolor='rozowy';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'DEFAULT kolor='rozowy'' at line 1
+mysql> UPDATE walizka SET kolor='rozowy' DEFAULT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'DEFAULT' at line 1
+mysql> DROP walizka
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'walizka' at line 1
+mysql> DROP TABLE walizka;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy                                                                                                                          ','czerwony','teczowy','zolty') DEFAULT rozowy, id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(                                                                                                                          id_postaci) ON DELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server ve                                                                                                                          rsion for the right syntax to use near 'rozowy, id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(                                                                                                                          id_po' at line 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy','czerwony','teczowy','zolty') DEFAULT rozowy, id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rozowy, id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_po' at line 1
+mysql> CREATE TABLE walizka (id_walizki INT PRIMARY KEY AUTO_INCREMENT, pojemnosc INT UNSIGNED, kolor ENUM ('rozowy','czerwony','teczowy','zolty') DEFAULT 'rozowy', id_wlasciciela INT, FOREIGN KEY (id_wlasciciela) REFERENCES postac(id_postaci) ON DELETE CASCADE);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> INSERT INTO walizka VALUES (NULL,'30','czerwony','Bjorn');
+ERROR 1366 (HY000): Incorrect integer value: 'Bjorn' for column 'id_wlasciciela' at row 1
+mysql> INSERT INTO walizka VALUES (NULL,'30','czerwony','1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO walizka VALUES (NULL,'15','','3');
+ERROR 1265 (01000): Data truncated for column 'kolor' at row 1
+mysql> INSERT INTO walizka VALUES (NULL,'15','zolty','3');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM walizka
+    -> ;
++------------+-----------+----------+----------------+
+| id_walizki | pojemnosc | kolor    | id_wlasciciela |
++------------+-----------+----------+----------------+
+|          1 |        30 | czerwony |              1 |
+|          2 |        15 | zolty    |              3 |
++------------+-----------+----------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> DESC walizka
+    -> ;
++----------------+---------------------------------------------+------+-----+---------+----------------+
+| Field          | Type                                        | Null | Key | Default | Extra          |
++----------------+---------------------------------------------+------+-----+---------+----------------+
+| id_walizki     | int                                         | NO   | PRI | NULL    | auto_increment |
+| pojemnosc      | int unsigned                                | YES  |     | NULL    |                |
+| kolor          | enum('rozowy','czerwony','teczowy','zolty') | YES  |     | rozowy  |                |
+| id_wlasciciela | int                                         | YES  | MUL | NULL    |                |
++----------------+---------------------------------------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
