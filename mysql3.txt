@@ -1,0 +1,714 @@
+login as: siwekp
+siwekp@213.184.8.36's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                          x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Nov  3 11:38:08 2021 from 213.184.8.151
+siwekp@bad2:~$
+siwekp@bad2:~$ mysql -u siwekp -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'siwekp'@'localhost' (using password:                          YES)
+siwekp@bad2:~$ mysql -u siwekp -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 595
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> cls
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                          corresponds to your MySQL server version for the right syntax to use near 'cls'                          at line 1
+mysql>
+mysql>
+mysql> desc
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that                          corresponds to your MySQL server version for the right syntax to use near '' at                          line 1
+mysql> desc postac;
+ERROR 1046 (3D000): No database selected
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
++--------------------+
+2 rows in set (0.01 sec)
+
+mysql> use siwekp;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> show tables;
++------------------+
+| Tables_in_siwekp |
++------------------+
+| postac           |
+| pracownik        |
+| projekt          |
+| przetwory        |
+| statek           |
+| walizka          |
++------------------+
+6 rows in set (0.00 sec)
+
+mysql> desc postac;
++------------+---------------------------------+------+-----+---------+---------                         -------+
+| Field      | Type                            | Null | Key | Default | Extra                                   |
++------------+---------------------------------+------+-----+---------+---------                         -------+
+| id_postaci | int                             | NO   | PRI | NULL    | auto_inc                         rement |
+| nazwa      | varchar(40)                     | YES  |     | NULL    |                                         |
+| rodzaj     | enum('wiking','ptak','kobieta') | YES  |     | NULL    |                                         |
+| data_ur    | date                            | NO   |     | NULL    |                                         |
+| wiek       | int unsigned                    | YES  |     | NULL    |                                         |
+| funkcja    | varchar(60)                     | YES  |     | NULL    |                                         |
+| statek     | varchar(60)                     | YES  | MUL | NULL    |                                         |
++------------+---------------------------------+------+-----+---------+---------                         -------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM postac;
++------------+-----------+---------+------------+------+---------+----------+
+| id_postaci | nazwa     | rodzaj  | data_ur    | wiek | funkcja | statek   |
++------------+-----------+---------+------------+------+---------+----------+
+|          1 | Bjorn     | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     |
+|          2 | Drozd     | ptak    | 2000-01-01 |   10 | NULL    | NULL     |
+|          3 | Tesciowa  | kobieta | 1874-10-20 |   88 | NULL    | Victoria |
+|          4 | Adam      | wiking  | 2009-01-02 |   75 | NULL    | Victoria |
+|          5 | Wojtek    | wiking  | 2000-10-12 |   21 | NULL    | Victoria |
+|          6 | Krzysztof | wiking  | 1987-03-06 |   51 | NULL    | Zubr     |
+|          7 | Michal    | wiking  | 2020-12-12 |    2 | NULL    | Zubr     |
+|          8 | Marek     | wiking  | 2001-07-08 |   20 | NULL    | Zubr     |
++------------+-----------+---------+------------+------+---------+----------+
+8 rows in set (0.03 sec)
+
+mysql> DELATE FROM postac WHERE 'id_postaci' = '4,6';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELATE FROM postac WHERE 'id_postaci' = '4,6'' at line 1
+mysql> DELATE FROM postac WHERE 'id_postaci' = '4';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELATE FROM postac WHERE 'id_postaci' = '4'' at line 1
+mysql> DELATE FROM postac WHERE id_postaci = '4';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELATE FROM postac WHERE id_postaci = '4'' at line 1
+mysql> DELATE FROM postac WHERE id_postaci = 4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELATE FROM postac WHERE id_postaci = 4' at line 1
+mysql> DELATE FROM postac WHERE id_postaci=4;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELATE FROM postac WHERE id_postaci=4' at line 1
+mysql> DELETE FROM postac WHERE id_postaci=4;
+Query OK, 1 row affected (0.06 sec)
+
+mysql> DELETE FROM postac WHERE id_postaci=6;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SHOW CREATE TABLE walizka;
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| walizka | CREATE TABLE `walizka` (
+  `id_walizki` int NOT NULL AUTO_INCREMENT,
+  `pojemnosc` int unsigned DEFAULT NULL,
+  `kolor` enum('rozowy','czerwony','teczowy','zolty') DEFAULT 'rozowy',
+  `id_wlasciciela` int DEFAULT NULL,
+  PRIMARY KEY (`id_walizki`),
+  KEY `id_wlasciciela` (`id_wlasciciela`),
+  CONSTRAINT `walizka_ibfk_1` FOREIGN KEY (`id_wlasciciela`) REFERENCES `postac` (`id_postaci`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE walizka DROP FOREIGN KEY walizka_ibfk_1
+    -> ;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW CREATE TABLE przetwory;
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| przetwory | CREATE TABLE `przetwory` (
+  `id_przetworu` int NOT NULL,
+  `rok_produkcji` year DEFAULT '1986',
+  `id_wykonawcy` int DEFAULT NULL,
+  `zawartosc` varchar(60) DEFAULT NULL,
+  `dodatek` varchar(60) DEFAULT 'papryczka chilli',
+  `id_konsumenta` int DEFAULT NULL,
+  PRIMARY KEY (`id_przetworu`),
+  KEY `id_wykonawcy` (`id_wykonawcy`),
+  KEY `id_konsumenta` (`id_konsumenta`),
+  CONSTRAINT `przetwory_ibfk_1` FOREIGN KEY (`id_wykonawcy`) REFERENCES `postac` (`id_postaci`),
+  CONSTRAINT `przetwory_ibfk_2` FOREIGN KEY (`id_konsumenta`) REFERENCES `postac` (`id_postaci`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE przetwory DROP przetwory_ibfk_1;
+ERROR 1091 (42000): Can't DROP 'przetwory_ibfk_1'; check that column/key exists
+mysql> ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_1;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE przetwory DROP FOREIGN KEY przetwory_ibfk_2;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW CREATE TABLE
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SHOW TABLES;
++------------------+
+| Tables_in_siwekp |
++------------------+
+| postac           |
+| pracownik        |
+| projekt          |
+| przetwory        |
+| statek           |
+| walizka          |
++------------------+
+6 rows in set (0.01 sec)
+
+mysql> SHOW CREATE TABLE statek;
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                     |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| statek | CREATE TABLE `statek` (
+  `nazwa_statku` varchar(60) NOT NULL,
+  `rodzaj_statku` enum('duzy','sredni','maly') DEFAULT NULL,
+  `data_wodowania` date DEFAULT NULL,
+  `max_ladownosc` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`nazwa_statku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW CREATE TABLE pracownik;
++-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                              |
++-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pracownik | CREATE TABLE `pracownik` (
+  `id_pracownika` int NOT NULL,
+  `imie` varchar(40) NOT NULL,
+  `nazwisko` varchar(70) NOT NULL,
+  `zarobki` double(10,2) DEFAULT (4000),
+  `data_urodzenia` date NOT NULL,
+  `stanowisko` enum('manager','kierownik','sprzedawca','kasjer') DEFAULT NULL,
+  PRIMARY KEY (`id_pracownika`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.01 sec)
+
+mysql> SHOW CREATE TABLE projekt;
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table                                                                                                                                                                                                                                                                                                                                                                   |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| projekt | CREATE TABLE `projekt` (
+  `id_projektu` int NOT NULL,
+  `nazwa` varchar(40) DEFAULT NULL,
+  `id_pracownika` int DEFAULT NULL,
+  PRIMARY KEY (`id_projektu`),
+  KEY `id_pracownika` (`id_pracownika`),
+  CONSTRAINT `projekt_ibfk_1` FOREIGN KEY (`id_pracownika`) REFERENCES `pracownik` (`id_pracownika`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE postac MODIFY id_postaci INT;
+Query OK, 6 rows affected (0.07 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> DELETE PRIMARY KEY FROM postac;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY KEY FROM postac' at line 1
+mysql> ALTER TABLE postac DROP PRIMARY KEY;
+Query OK, 6 rows affected (0.09 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> desc postac;
++------------+---------------------------------+------+-----+---------+-------+
+| Field      | Type                            | Null | Key | Default | Extra |
++------------+---------------------------------+------+-----+---------+-------+
+| id_postaci | int                             | NO   |     | NULL    |       |
+| nazwa      | varchar(40)                     | YES  |     | NULL    |       |
+| rodzaj     | enum('wiking','ptak','kobieta') | YES  |     | NULL    |       |
+| data_ur    | date                            | NO   |     | NULL    |       |
+| wiek       | int unsigned                    | YES  |     | NULL    |       |
+| funkcja    | varchar(60)                     | YES  |     | NULL    |       |
+| statek     | varchar(60)                     | YES  | MUL | NULL    |       |
++------------+---------------------------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> ALTER TABLE postac ADD pesel VARCHAR(11);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM postac
+    -> ;
++------------+----------+---------+------------+------+---------+----------+-------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel |
++------------+----------+---------+------------+------+---------+----------+-------+
+|          1 | Bjorn    | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | NULL  |
+|          2 | Drozd    | ptak    | 2000-01-01 |   10 | NULL    | NULL     | NULL  |
+|          3 | Tesciowa | kobieta | 1874-10-20 |   88 | NULL    | Victoria | NULL  |
+|          5 | Wojtek   | wiking  | 2000-10-12 |   21 | NULL    | Victoria | NULL  |
+|          7 | Michal   | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | NULL  |
+|          8 | Marek    | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | NULL  |
++------------+----------+---------+------------+------+---------+----------+-------+
+6 rows in set (0.01 sec)
+
+mysql> UPDATE postac SET pesel='12345678912' WHERE id_postaci='1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM postacl
+    -> SELECT * FROM postac;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM postac' at line 2
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+----------+---------+------------+------+---------+----------+-------------+
+|          1 | Bjorn    | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd    | ptak    | 2000-01-01 |   10 | NULL    | NULL     | NULL        |
+|          3 | Tesciowa | kobieta | 1874-10-20 |   88 | NULL    | Victoria | NULL        |
+|          5 | Wojtek   | wiking  | 2000-10-12 |   21 | NULL    | Victoria | NULL        |
+|          7 | Michal   | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | NULL        |
+|          8 | Marek    | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | NULL        |
++------------+----------+---------+------------+------+---------+----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET psesl='23456789123' WHERE id_postaci=2;
+ERROR 1054 (42S22): Unknown column 'psesl' in 'field list'
+mysql> UPDATE postac SET pesel='23456789123' WHERE id_postaci=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET pesel='34567890123' WHERE id_postaci=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET pesel='54577830123' WHERE id_postaci=4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE postac SET pesel='89477830142' WHERE id_postaci=4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE postac SET pesel='54577830123' WHERE id_postaci=4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> UPDATE postac SET pesel='89477830142' WHERE id_postaci=5;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+----------+---------+------------+------+---------+----------+-------------+
+|          1 | Bjorn    | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd    | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa | kobieta | 1874-10-20 |   88 | NULL    | Victoria | 34567890123 |
+|          5 | Wojtek   | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          7 | Michal   | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | NULL        |
+|          8 | Marek    | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | NULL        |
++------------+----------+---------+------------+------+---------+----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET pesel='54577830123' WHERE id_postaci=7;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE postac SET pesel='99999999999' WHERE id_postaci=8;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+----------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa    | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+----------+---------+------------+------+---------+----------+-------------+
+|          1 | Bjorn    | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd    | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa | kobieta | 1874-10-20 |   88 | NULL    | Victoria | 34567890123 |
+|          5 | Wojtek   | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          7 | Michal   | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          8 | Marek    | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+----------+---------+------------+------+---------+----------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE postac MODIFY pesel PRIMARY KEY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY KEY' at line 1
+mysql> ALTER TABLE postac MODIFY pesel SET PRIMARY KEY;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PRIMARY KEY' at line 1
+mysql> ALTER TABLE postac ADD PRIMARY KEY(pesel);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena');
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO postac VALUES ('9','Gertruda Nieszczera','syrena','1651-04-02','370');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO postac VALUES (9,'Gertruda Nieszczera','syrena','1651-04-02','370');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO postac(id_postaci,nazwa,rodzaj,data_ur,wiek,pesel) VALUES ('9','Gertruda Nieszczera','
+syrena','1651-04-02','370','09876543210');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | NULL     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Victoria | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+7 rows in set (0.01 sec)
+
+mysql> SHOW CREATE TABLE postacl
+    -> ;
+ERROR 1146 (42S02): Table 'siwekp.postacl' doesn't exist
+mysql> SHOW CREATE TABLE postac;
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| postac | CREATE TABLE `postac` (
+  `id_postaci` int NOT NULL,
+  `nazwa` varchar(40) DEFAULT NULL,
+  `rodzaj` enum('wiking','ptak','kobieta','syrena') DEFAULT NULL,
+  `data_ur` date NOT NULL,
+  `wiek` int unsigned DEFAULT NULL,
+  `funkcja` varchar(60) DEFAULT NULL,
+  `statek` varchar(60) DEFAULT NULL,
+  `pesel` varchar(11) NOT NULL,
+  PRIMARY KEY (`pesel`),
+  KEY `statek` (`statek`),
+  CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | NULL     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Victoria | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET statek='Zubr' WHERE nazwa LIKE '%a%';
+Query OK, 2 rows affected (0.05 sec)
+Rows matched: 4  Changed: 2  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | Zubr     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Zubr     | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM statek;
++--------------+---------------+----------------+---------------+
+| nazwa_statku | rodzaj_statku | data_wodowania | max_ladownosc |
++--------------+---------------+----------------+---------------+
+| Victoria     | duzy          | 2021-10-10     |           600 |
+| Zubr         | sredni        | 2021-05-06     |           400 |
++--------------+---------------+----------------+---------------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE data_wodowania BETWEEN 1900 AND 2000;
+ERROR 1292 (22007): Incorrect date value: '1900' for column 'data_wodowania' at row 1
+mysql> UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE 'data_wodowania' BETWEEN 1900 AND 2000;
+ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'data_wodowania'
+mysql> UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE data_wodowania BETWEEN '1900' AND '2000'
+ERROR 1292 (22007): Incorrect date value: '1900' for column 'data_wodowania' at row 1
+mysql> UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE data_wodowania BETWEEN 1900-01-01 AND 20
+ERROR 1292 (22007): Incorrect date value: '1898' for column 'data_wodowania' at row 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE data_wodowania BETWEEN 1900-01-01 AND 20
+ERROR 1292 (22007): Incorrect date value: '1898' for column 'data_wodowania' at row 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> UPDATE statek SET max_ladownosc = max_ladownosc*0.7 WHERE data_wodowania BETWEEN '1900-01-01' AND
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | Zubr     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Zubr     | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+7 rows in set (0.00 sec)
+
+mysql> UPDATE postac SET wiek='Powyzej 1000 lat' WHERE wiek > 1000;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> ALTER TABLE postac MODIFY rodzaj ENUM('wiking','ptak','kobieta','syrena','waz');
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO postac VALUES ('10','Loko','waz','1900-03-03','221','NULL','NULL','08394512452');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`siwekp`.`postac`,
+mysql> INSERT INTO postac VALUES ('10','Loko','waz','1900-03-03','221','NULL','NULL','08394512452');
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`siwekp`.`postac`,
+mysql> INSERT INTO postac(id_postaci,nazwa,rodzaj,data_ur,wiek,pesel) VALUES ('10','Loko','waz','1900-03-
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|         10 | Loko                | waz     | 1900-03-03 |  221 | NULL    | NULL     | 08394512452 |
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | Zubr     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Zubr     | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> CREATE TABLE marynarz LIKE postac;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> SELECT * FROM marynarz;
+Empty set (0.00 sec)
+
+mysql> SHOW CREATE TABLE marynarz;
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| marynarz | CREATE TABLE `marynarz` (
+  `id_postaci` int NOT NULL,
+  `nazwa` varchar(40) DEFAULT NULL,
+  `rodzaj` enum('wiking','ptak','kobieta','syrena','waz') DEFAULT NULL,
+  `data_ur` date NOT NULL,
+  `wiek` int unsigned DEFAULT NULL,
+  `funkcja` varchar(60) DEFAULT NULL,
+  `statek` varchar(60) DEFAULT NULL,
+  `pesel` varchar(11) NOT NULL,
+  PRIMARY KEY (`pesel`),
+  KEY `statek` (`statek`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SHOW CREATE TABLE postac;
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| postac | CREATE TABLE `postac` (
+  `id_postaci` int NOT NULL,
+  `nazwa` varchar(40) DEFAULT NULL,
+  `rodzaj` enum('wiking','ptak','kobieta','syrena','waz') DEFAULT NULL,
+  `data_ur` date NOT NULL,
+  `wiek` int unsigned DEFAULT NULL,
+  `funkcja` varchar(60) DEFAULT NULL,
+  `statek` varchar(60) DEFAULT NULL,
+  `pesel` varchar(11) NOT NULL,
+  PRIMARY KEY (`pesel`),
+  KEY `statek` (`statek`),
+  CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE marynarz ADD FOREIGN KEY('statek') REFERENCES statek('nazwa_statku');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''statek') REFERENCES statek('nazwa_statku')' at line 1
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> ALTER TABLE marynarz ADD FOREIGN KEY(statek) REFERENCES statek(nazwa_statku);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
++--------------------+
+2 rows in set (0.00 sec)
+
+mysql> desc marynarz;
++------------+------------------------------------------------+------+-----+---------+-------+
+| Field      | Type                                           | Null | Key | Default | Extra |
++------------+------------------------------------------------+------+-----+---------+-------+
+| id_postaci | int                                            | NO   |     | NULL    |       |
+| nazwa      | varchar(40)                                    | YES  |     | NULL    |       |
+| rodzaj     | enum('wiking','ptak','kobieta','syrena','waz') | YES  |     | NULL    |       |
+| data_ur    | date                                           | NO   |     | NULL    |       |
+| wiek       | int unsigned                                   | YES  |     | NULL    |       |
+| funkcja    | varchar(60)                                    | YES  |     | NULL    |       |
+| statek     | varchar(60)                                    | YES  | MUL | NULL    |       |
+| pesel      | varchar(11)                                    | NO   | PRI | NULL    |       |
++------------+------------------------------------------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|         10 | Loko                | waz     | 1900-03-03 |  221 | NULL    | NULL     | 08394512452 |
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | Zubr     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Zubr     | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO marynarz VALUES ('9','syrena','1651-04-02','370','NULL','Zubr','09876543210');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO marynarz VALUES ('9','Gertruda Nieszczera','syrena','1651-04-02','370','NULL','Zubr','09876543210');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO marynarz VALUES ('1','Bjorn','wiking','1999-01-01','25','Kapitan','Zubr','12345678912');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO marynarz VALUES ('3','Tesciowa','kobieta','1874-10-20','88','NULL','Zubr','34567890123');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO marynarz VALUES ('7','Michal','wiking','2020-12-12','2','Zubr','54577830123');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT INTO marynarz VALUES ('7','Michal','wiking','2020-12-12','2','NULL','Zubr','54577830123');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO marynarz VALUES ('5','Wojtek','wiking','2000-10-12','21','NULL','Victoria','89477830142');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT I
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SELECT * FROM postac;
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek   | pesel       |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+|         10 | Loko                | waz     | 1900-03-03 |  221 | NULL    | NULL     | 08394512452 |
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | Zubr     | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | Zubr     | 12345678912 |
+|          2 | Drozd               | ptak    | 2000-01-01 |   10 | NULL    | NULL     | 23456789123 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | Zubr     | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | Zubr     | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | Victoria | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | Zubr     | 99999999999 |
++------------+---------------------+---------+------------+------+---------+----------+-------------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO marynarz VALUES ('8','Marek','wiking','2001-07-08','20','NULL','Zubr','99999999999');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> UPDATE marynarz SET statek='NULL';
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`siwekp`.`marynarz`, CONSTRAINT `marynarz_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> UPDATE postac SET statek='NULL';
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`siwekp`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> UPDATE marynarz SET statek=NULL;
+Query OK, 6 rows affected (0.01 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> SELECT * FROM marynarz;
++------------+---------------------+---------+------------+------+---------+--------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek | pesel       |
++------------+---------------------+---------+------------+------+---------+--------+-------------+
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | NULL   | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | NULL   | 12345678912 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | NULL   | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | NULL   | 54577830123 |
+|          5 | Wojtek              | wiking  | 2000-10-12 |   21 | NULL    | NULL   | 89477830142 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | NULL   | 99999999999 |
++------------+---------------------+---------+------------+------+---------+--------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> DELETE FROM marynarz WHERE id_postaci=5;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM marynarz;
++------------+---------------------+---------+------------+------+---------+--------+-------------+
+| id_postaci | nazwa               | rodzaj  | data_ur    | wiek | funkcja | statek | pesel       |
++------------+---------------------+---------+------------+------+---------+--------+-------------+
+|          9 | Gertruda Nieszczera | syrena  | 1651-04-02 |  370 | NULL    | NULL   | 09876543210 |
+|          1 | Bjorn               | wiking  | 1999-01-01 |   25 | Kapitan | NULL   | 12345678912 |
+|          3 | Tesciowa            | kobieta | 1874-10-20 |   88 | NULL    | NULL   | 34567890123 |
+|          7 | Michal              | wiking  | 2020-12-12 |    2 | NULL    | NULL   | 54577830123 |
+|          8 | Marek               | wiking  | 2001-07-08 |   20 | NULL    | NULL   | 99999999999 |
++------------+---------------------+---------+------------+------+---------+--------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM statek;
++--------------+---------------+----------------+---------------+
+| nazwa_statku | rodzaj_statku | data_wodowania | max_ladownosc |
++--------------+---------------+----------------+---------------+
+| Victoria     | duzy          | 2021-10-10     |           600 |
+| Zubr         | sredni        | 2021-05-06     |           400 |
++--------------+---------------+----------------+---------------+
+2 rows in set (0.01 sec)
+
+mysql> DELETE FROM statek * ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*' at line 1
+mysql> DELETE FROM statek WHERE nazwa_statku='Victoria';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`siwekp`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> DELETE FROM statek WHERE nazwa_statku=Victoria;
+ERROR 1054 (42S22): Unknown column 'Victoria' in 'where clause'
+mysql> DELETE FROM statek WHERE nazwa_statku='Victoria';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`siwekp`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql> DELETE FROM statek WHERE nazwa_statku=Victoria;
+ERROR 1054 (42S22): Unknown column 'Victoria' in 'where clause'
+mysql> DELETE * FROM statek;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* FROM statek' at line 1
+mysql> DELETE FROM statek WHERE max_ladownosc='600';
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`siwekp`.`postac`, CONSTRAINT `postac_ibfk_1` FOREIGN KEY (`statek`) REFERENCES `statek` (`nazwa_statku`))
+mysql>
