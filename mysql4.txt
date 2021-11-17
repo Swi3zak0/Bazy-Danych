@@ -1,0 +1,1498 @@
+login as: siwekp
+siwekp@213.184.8.36's password:
+Linux bad2 4.10.17-1-pve #1 SMP PVE 4.10.17-16 (Tue, 11 Jul 2017 09:55:44 +0200)                                                                                                                                                              x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Nov 10 11:38:41 2021 from 213.184.8.151
+siwekp@bad2:~$ mysql -u login -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'login'@'localhost' (using password:                                                                                                                                                              YES)
+siwekp@bad2:~$ mysql -u siwekp -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'siwekp'@'localhost' (using password:                                                                                                                                                              YES)
+siwekp@bad2:~$ mysql -u siwekp -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1420
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use siwekp
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables
+    -> ;
++------------------+
+| Tables_in_siwekp |
++------------------+
+| marynarz         |
+| postac           |
+| pracownik        |
+| projekt          |
+| przetwory        |
+| statek           |
+| walizka          |
++------------------+
+7 rows in set (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
+| wikingowie         |
++--------------------+
+3 rows in set (0.01 sec)
+
+mysql> CREATE TABLE kreatura AS SELECT * FROM wikingowie.kreatura;
+Query OK, 19 rows affected (0.02 sec)
+Records: 19  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE zasob AS SELECT * FROM wikingowie.zasob;
+Query OK, 28 rows affected, 1 warning (0.02 sec)
+Records: 28  Duplicates: 0  Warnings: 1
+
+mysql> CREATE TABLE ekwipunek AS SELECT * FROM wikingowie.ekwipunek;
+Query OK, 28 rows affected (0.08 sec)
+Records: 28  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE rodzaj='jedzenie';
++----------+----------+--------+-------+----------------+----------+
+| idZasobu | nazwa    | waga   | ilosc | dataPozyskania | rodzaj   |
++----------+----------+--------+-------+----------------+----------+
+|        1 | kokos    |   2.00 |     3 | 2007-07-23     | jedzenie |
+|        3 | kokos    |   4.00 |     1 | 2004-09-03     | jedzenie |
+|        4 | kokos    |   7.00 |     2 | 2010-10-13     | jedzenie |
+|        5 | banan    |   2.00 |    12 | 2015-11-09     | jedzenie |
+|        6 | figa     |   1.00 |    30 | 2001-12-14     | jedzenie |
+|        7 | krokodyl | 100.00 |     1 | 2005-07-14     | jedzenie |
+|        8 | bataty   |   1.00 |    30 | 2002-07-01     | jedzenie |
+|        9 | opos     |  12.00 |     2 | 2006-08-01     | jedzenie |
+|       28 | banan    |   1.00 |     7 | 2008-08-21     | jedzenie |
++----------+----------+--------+-------+----------------+----------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT idZasobu,ilosc FROM kreatura WHERE id=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near ',3,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM kreatura WHERE id=(1,3,5);
+ERROR 1054 (42S22): Unknown column 'idZasobu' in 'field list'
+mysql> SELECT idZasobu,ilosc FROM kreatura WHERE id=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near ',3,5' at line 1
+mysql> SELECT * FROM kreatura;
++------------+----------------------------+---------+------------+------+--------+
+| idKreatury | nazwa                      | rodzaj  | dataUr     | waga | udzwig |
++------------+----------------------------+---------+------------+------+--------+
+|          1 | Bjorn                      | wiking  | 1670-04-01 |   99 |     80 |
+|          2 | Brutal                     | wiking  | 1672-12-24 |  120 |     85 |
+|          3 | Khorad                     | wiking  | 1671-07-15 |  105 |     81 |
+|          4 | Birgun                     | wiking  | 1675-05-11 |   88 |     66 |
+|          5 | Defgard                    | wiking  | 1674-07-05 |  100 |     72 |
+|          6 | Astrid                     | wiking  | 1677-08-18 |   75 |     49 |
+|          7 | Ibra                       | wiking  | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur                  | wiking  | 1676-03-30 |  110 |     93 |
+|          9 | Nemo                       | ryba    | 1677-10-02 |    1 |      1 |
+|         10 | Loko                       | waz     | 1677-10-05 |    3 |      4 |
+|         11 | Drozd                      | ptak    | 1675-07-07 |    2 |      1 |
+|         12 | Ara                        | ptak    | 1676-05-05 |    2 |      1 |
+|         13 | Szczeki                    | ryba    | 1674-04-06 | 2100 |    600 |
+|         14 | Tesciowa                   | wiedzma | 1655-10-01 |   65 |     40 |
+|         15 | Tiki                       | malpa   | 1672-08-08 |   32 |     25 |
+|         16 | Dziadek                    | wiking  | 1645-01-23 |   54 |    100 |
+|         17 | sztuczna szczeka tesciowej | wiedzma | 1680-08-13 |    2 |      1 |
+|         18 | Tesciowa dziadka           | wiedzma | 1630-04-30 |   78 |     12 |
+|        100 | Babajaga                   | wiedzma | 1000-01-01 |   20 |   1000 |
++------------+----------------------------+---------+------------+------+--------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT idZasobu,ilosc FROM zasob WHERE idKreatury=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near ',3,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM zasob WHERE IN idKreatury=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near 'IN idKreatury=1,3                                                                                                                                                       ,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM zasob IN idKreatury=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near 'IN idKreatury=1,3                                                                                                                                                       ,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM zasob;
++----------+-------+
+| idZasobu | ilosc |
++----------+-------+
+|        1 |     3 |
+|        2 |     1 |
+|        3 |     1 |
+|        4 |     2 |
+|        5 |    12 |
+|        6 |    30 |
+|        7 |     1 |
+|        8 |    30 |
+|        9 |     2 |
+|       10 |   120 |
+|       11 |    20 |
+|       12 |    30 |
+|       13 |    40 |
+|       14 |     2 |
+|       15 |  1000 |
+|       16 |     7 |
+|       17 |     9 |
+|       18 |     1 |
+|       19 |    10 |
+|       20 |     3 |
+|       21 |   300 |
+|       22 |   120 |
+|       23 |     1 |
+|       24 |     1 |
+|       25 |     1 |
+|       26 |     4 |
+|       27 |     1 |
+|       28 |     7 |
++----------+-------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM ekwipunek;
++-------------+------------+----------+-------+
+| idEkwipunku | idKreatury | idZasobu | ilosc |
++-------------+------------+----------+-------+
+|           1 |          1 |        1 |     2 |
+|           2 |          1 |       10 |     1 |
+|           3 |          1 |       14 |     3 |
+|           4 |          1 |       15 |    53 |
+|           5 |          1 |        2 |     3 |
+|           6 |          2 |        2 |     2 |
+|           7 |          2 |        4 |     2 |
+|           8 |          1 |       23 |     1 |
+|           9 |          1 |       18 |     1 |
+|          10 |          6 |        1 |     4 |
+|          11 |          3 |       17 |     1 |
+|          12 |          7 |       16 |     1 |
+|          13 |          7 |       19 |     1 |
+|          14 |         14 |       25 |     2 |
+|          15 |         14 |       27 |     1 |
+|          16 |         14 |       24 |     1 |
+|          17 |         14 |       26 |     1 |
+|          18 |          6 |       20 |     1 |
+|          19 |          5 |       17 |     2 |
+|          20 |          8 |       21 |     2 |
+|          21 |         11 |       13 |     1 |
+|          22 |          8 |       22 |    10 |
+|          23 |         13 |        9 |     1 |
+|          24 |          5 |        2 |     2 |
+|          25 |          5 |       21 |    50 |
+|          26 |          5 |       16 |     1 |
+|          27 |       NULL |       12 |    34 |
+|          28 |          6 |       13 |     1 |
++-------------+------------+----------+-------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT idZasobu,ilosc FROM zasob IN ekwipunek WHERE idKreatury=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near 'IN ekwipunek WHER                                                                                                                                                       E idKreatury=1,3,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM zasob,ekwipunek WHERE idKreatury=1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',3,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM zasob,ekwipunek WHERE idKreatury='1,3,5';
+ERROR 1052 (23000): Column 'idZasobu' in field list is ambiguous
+mysql> SELECT idZasobu,ilosc FROM zasob WHERE idKreatury='1,3,5';
+ERROR 1054 (42S22): Unknown column 'idKreatury' in 'where clause'
+mysql> SELECT idZasobu,ilosc FROM zasob IN ekwipunek WHERE idKreatury='1,3,5';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IN ekwipunek WHERE idKreatury='1,3,5'' at line 1
+mysql> SELECT idZasobu,ilosc FROM zasob WHERE ekwipunek(idKreatury='1,3,5');
+ERROR 1305 (42000): FUNCTION siwekp.ekwipunek does not exist
+mysql> SELECT idZasobu,ilosc FROM ekwipunek WHERE idKreatury='1,3,5'
+    -> ;
++----------+-------+
+| idZasobu | ilosc |
++----------+-------+
+|        1 |     2 |
+|       10 |     1 |
+|       14 |     3 |
+|       15 |    53 |
+|        2 |     3 |
+|       23 |     1 |
+|       18 |     1 |
++----------+-------+
+7 rows in set, 1 warning (0.00 sec)
+
+mysql> SELECT * FROM kreatura;
++------------+----------------------------+---------+------------+------+--------+
+| idKreatury | nazwa                      | rodzaj  | dataUr     | waga | udzwig |
++------------+----------------------------+---------+------------+------+--------+
+|          1 | Bjorn                      | wiking  | 1670-04-01 |   99 |     80 |
+|          2 | Brutal                     | wiking  | 1672-12-24 |  120 |     85 |
+|          3 | Khorad                     | wiking  | 1671-07-15 |  105 |     81 |
+|          4 | Birgun                     | wiking  | 1675-05-11 |   88 |     66 |
+|          5 | Defgard                    | wiking  | 1674-07-05 |  100 |     72 |
+|          6 | Astrid                     | wiking  | 1677-08-18 |   75 |     49 |
+|          7 | Ibra                       | wiking  | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur                  | wiking  | 1676-03-30 |  110 |     93 |
+|          9 | Nemo                       | ryba    | 1677-10-02 |    1 |      1 |
+|         10 | Loko                       | waz     | 1677-10-05 |    3 |      4 |
+|         11 | Drozd                      | ptak    | 1675-07-07 |    2 |      1 |
+|         12 | Ara                        | ptak    | 1676-05-05 |    2 |      1 |
+|         13 | Szczeki                    | ryba    | 1674-04-06 | 2100 |    600 |
+|         14 | Tesciowa                   | wiedzma | 1655-10-01 |   65 |     40 |
+|         15 | Tiki                       | malpa   | 1672-08-08 |   32 |     25 |
+|         16 | Dziadek                    | wiking  | 1645-01-23 |   54 |    100 |
+|         17 | sztuczna szczeka tesciowej | wiedzma | 1680-08-13 |    2 |      1 |
+|         18 | Tesciowa dziadka           | wiedzma | 1630-04-30 |   78 |     12 |
+|        100 | Babajaga                   | wiedzma | 1000-01-01 |   20 |   1000 |
++------------+----------------------------+---------+------------+------+--------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE rodzaj != 'wiedzma' AND udzwig>=50;
++------------+-----------+--------+------------+------+--------+
+| idKreatury | nazwa     | rodzaj | dataUr     | waga | udzwig |
++------------+-----------+--------+------------+------+--------+
+|          1 | Bjorn     | wiking | 1670-04-01 |   99 |     80 |
+|          2 | Brutal    | wiking | 1672-12-24 |  120 |     85 |
+|          3 | Khorad    | wiking | 1671-07-15 |  105 |     81 |
+|          4 | Birgun    | wiking | 1675-05-11 |   88 |     66 |
+|          5 | Defgard   | wiking | 1674-07-05 |  100 |     72 |
+|          7 | Ibra      | wiking | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur | wiking | 1676-03-30 |  110 |     93 |
+|         13 | Szczeki   | ryba   | 1674-04-06 | 2100 |    600 |
+|         16 | Dziadek   | wiking | 1645-01-23 |   54 |    100 |
++------------+-----------+--------+------------+------+--------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasoby WHERE waga BETWEEN 2 AND 5;
+ERROR 1146 (42S02): Table 'siwekp.zasoby' doesn't exist
+mysql> SELECT * FROM zasob WHERE waga BETWEEN 2 AND 5;
++----------+-------------------+------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+------+-------+----------------+--------------------+
+|        1 | kokos             | 2.00 |     3 | 2007-07-23     | jedzenie           |
+|        3 | kokos             | 4.00 |     1 | 2004-09-03     | jedzenie           |
+|        5 | banan             | 2.00 |    12 | 2015-11-09     | jedzenie           |
+|       14 | buty              | 2.00 |     2 | 2010-08-15     | ubranie            |
+|       18 | topor             | 3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|       19 | dzida             | 2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       23 | hamak             | 2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie | 2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|       25 | nie wiadomo co    | 4.00 |     1 | 2001-08-10     | NULL               |
+|       27 | miotla            | 3.00 |     1 | 2005-10-10     | NULL               |
++----------+-------------------+------+-------+----------------+--------------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE nazwa LIKE '%or%' AND udzwig BETWEEN 30 AND 70;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE nazwa LIKE '%or%';
++------------+--------+--------+------------+------+--------+
+| idKreatury | nazwa  | rodzaj | dataUr     | waga | udzwig |
++------------+--------+--------+------------+------+--------+
+|          1 | Bjorn  | wiking | 1670-04-01 |   99 |     80 |
+|          3 | Khorad | wiking | 1671-07-15 |  105 |     81 |
++------------+--------+--------+------------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE nazwa LIKE '%or%' AND udzwig BETWEEN 30 AND 70;
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT idZasobu,ilosc FROM ekwipunek WHERE idKreatury IN 1,3,5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near '1,3,5' at line 1
+mysql> SELECT idZasobu,ilosc FROM ekwipunek WHERE idKreatury IN (1,3,5);
++----------+-------+
+| idZasobu | ilosc |
++----------+-------+
+|        1 |     2 |
+|       10 |     1 |
+|       14 |     3 |
+|       15 |    53 |
+|        2 |     3 |
+|       23 |     1 |
+|       18 |     1 |
+|       17 |     1 |
+|       17 |     2 |
+|        2 |     2 |
+|       21 |    50 |
+|       16 |     1 |
++----------+-------+
+12 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE MONTH(dataPozyskania) IN (7,8);
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+12 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasoby WHERE rodzaj IS NOT NULL AND waga ORDER BY ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near 'ASC' at line 1
+mysql> mysql> SELECT * FROM zasoby WHERE rodzaj IS NOT NULL AND waga ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'BASC' at line 1
+mysql> SELECT * FROM zasoby WHERE rodzaj IS NOT NULL AND waga ORDER ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASC' at line 1
+mysql> SELECT * FROM zasoby WHERE rodzaj IS NOT NULL AND waga ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ASC' at line 1
+mysql> SELECT * FROM zasoby WHERE rodzaj IS NOT NULL AND ORDER BY waga ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ORDER BY waga ASC' at line 1
+mysql> SELECT * FROM zasoby WHERE rodzaj IS NOT NULL ORDER BY waga ASC;
+ERROR 1146 (42S02): Table 'siwekp.zasoby' doesn't exist
+mysql> SELECT * FROM zasob WHERE rodzaj IS NOT NULL ORDER BY waga ASC;
++----------+-------------------+--------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+--------+-------+----------------+--------------------+
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |
++----------+-------------------+--------+-------+----------------+--------------------+
+21 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura;
++------------+----------------------------+---------+------------+------+--------+
+| idKreatury | nazwa                      | rodzaj  | dataUr     | waga | udzwig |
++------------+----------------------------+---------+------------+------+--------+
+|          1 | Bjorn                      | wiking  | 1670-04-01 |   99 |     80 |
+|          2 | Brutal                     | wiking  | 1672-12-24 |  120 |     85 |
+|          3 | Khorad                     | wiking  | 1671-07-15 |  105 |     81 |
+|          4 | Birgun                     | wiking  | 1675-05-11 |   88 |     66 |
+|          5 | Defgard                    | wiking  | 1674-07-05 |  100 |     72 |
+|          6 | Astrid                     | wiking  | 1677-08-18 |   75 |     49 |
+|          7 | Ibra                       | wiking  | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur                  | wiking  | 1676-03-30 |  110 |     93 |
+|          9 | Nemo                       | ryba    | 1677-10-02 |    1 |      1 |
+|         10 | Loko                       | waz     | 1677-10-05 |    3 |      4 |
+|         11 | Drozd                      | ptak    | 1675-07-07 |    2 |      1 |
+|         12 | Ara                        | ptak    | 1676-05-05 |    2 |      1 |
+|         13 | Szczeki                    | ryba    | 1674-04-06 | 2100 |    600 |
+|         14 | Tesciowa                   | wiedzma | 1655-10-01 |   65 |     40 |
+|         15 | Tiki                       | malpa   | 1672-08-08 |   32 |     25 |
+|         16 | Dziadek                    | wiking  | 1645-01-23 |   54 |    100 |
+|         17 | sztuczna szczeka tesciowej | wiedzma | 1680-08-13 |    2 |      1 |
+|         18 | Tesciowa dziadka           | wiedzma | 1630-04-30 |   78 |     12 |
+|        100 | Babajaga                   | wiedzma | 1000-01-01 |   20 |   1000 |
++------------+----------------------------+---------+------------+------+--------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE MAX(dataUr);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> SELECT * FROM kreatura WHERE YEAR(dataUr);
++------------+----------------------------+---------+------------+------+--------+
+| idKreatury | nazwa                      | rodzaj  | dataUr     | waga | udzwig |
++------------+----------------------------+---------+------------+------+--------+
+|          1 | Bjorn                      | wiking  | 1670-04-01 |   99 |     80 |
+|          2 | Brutal                     | wiking  | 1672-12-24 |  120 |     85 |
+|          3 | Khorad                     | wiking  | 1671-07-15 |  105 |     81 |
+|          4 | Birgun                     | wiking  | 1675-05-11 |   88 |     66 |
+|          5 | Defgard                    | wiking  | 1674-07-05 |  100 |     72 |
+|          6 | Astrid                     | wiking  | 1677-08-18 |   75 |     49 |
+|          7 | Ibra                       | wiking  | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur                  | wiking  | 1676-03-30 |  110 |     93 |
+|          9 | Nemo                       | ryba    | 1677-10-02 |    1 |      1 |
+|         10 | Loko                       | waz     | 1677-10-05 |    3 |      4 |
+|         11 | Drozd                      | ptak    | 1675-07-07 |    2 |      1 |
+|         12 | Ara                        | ptak    | 1676-05-05 |    2 |      1 |
+|         13 | Szczeki                    | ryba    | 1674-04-06 | 2100 |    600 |
+|         14 | Tesciowa                   | wiedzma | 1655-10-01 |   65 |     40 |
+|         15 | Tiki                       | malpa   | 1672-08-08 |   32 |     25 |
+|         16 | Dziadek                    | wiking  | 1645-01-23 |   54 |    100 |
+|         17 | sztuczna szczeka tesciowej | wiedzma | 1680-08-13 |    2 |      1 |
+|         18 | Tesciowa dziadka           | wiedzma | 1630-04-30 |   78 |     12 |
+|        100 | Babajaga                   | wiedzma | 1000-01-01 |   20 |   1000 |
++------------+----------------------------+---------+------------+------+--------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura WHERE YEAR(dataUr) MIN;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'MIN' at line 1
+mysql> SELECT * FROM kreatura ORDER BY dataUr ASC = 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 5' at line 1
+mysql> SELECT * FROM kreatura ORDER BY dataUr ASC;
++------------+----------------------------+---------+------------+------+--------+
+| idKreatury | nazwa                      | rodzaj  | dataUr     | waga | udzwig |
++------------+----------------------------+---------+------------+------+--------+
+|        100 | Babajaga                   | wiedzma | 1000-01-01 |   20 |   1000 |
+|         18 | Tesciowa dziadka           | wiedzma | 1630-04-30 |   78 |     12 |
+|         16 | Dziadek                    | wiking  | 1645-01-23 |   54 |    100 |
+|         14 | Tesciowa                   | wiedzma | 1655-10-01 |   65 |     40 |
+|          1 | Bjorn                      | wiking  | 1670-04-01 |   99 |     80 |
+|          3 | Khorad                     | wiking  | 1671-07-15 |  105 |     81 |
+|         15 | Tiki                       | malpa   | 1672-08-08 |   32 |     25 |
+|          2 | Brutal                     | wiking  | 1672-12-24 |  120 |     85 |
+|          7 | Ibra                       | wiking  | 1674-02-03 |  105 |     87 |
+|         13 | Szczeki                    | ryba    | 1674-04-06 | 2100 |    600 |
+|          5 | Defgard                    | wiking  | 1674-07-05 |  100 |     72 |
+|          4 | Birgun                     | wiking  | 1675-05-11 |   88 |     66 |
+|         11 | Drozd                      | ptak    | 1675-07-07 |    2 |      1 |
+|          8 | Bjolkolur                  | wiking  | 1676-03-30 |  110 |     93 |
+|         12 | Ara                        | ptak    | 1676-05-05 |    2 |      1 |
+|          6 | Astrid                     | wiking  | 1677-08-18 |   75 |     49 |
+|          9 | Nemo                       | ryba    | 1677-10-02 |    1 |      1 |
+|         10 | Loko                       | waz     | 1677-10-05 |    3 |      4 |
+|         17 | sztuczna szczeka tesciowej | wiedzma | 1680-08-13 |    2 |      1 |
++------------+----------------------------+---------+------------+------+--------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura ORDER BY dataUr ASC LIMIT 5;
++------------+------------------+---------+------------+------+--------+
+| idKreatury | nazwa            | rodzaj  | dataUr     | waga | udzwig |
++------------+------------------+---------+------------+------+--------+
+|        100 | Babajaga         | wiedzma | 1000-01-01 |   20 |   1000 |
+|         18 | Tesciowa dziadka | wiedzma | 1630-04-30 |   78 |     12 |
+|         16 | Dziadek          | wiking  | 1645-01-23 |   54 |    100 |
+|         14 | Tesciowa         | wiedzma | 1655-10-01 |   65 |     40 |
+|          1 | Bjorn            | wiking  | 1670-04-01 |   99 |     80 |
++------------+------------------+---------+------------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+--------+-------+----------------+--------------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL               |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL               |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL               |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL               |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL               |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL               |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL               |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |
++----------+-------------------+--------+-------+----------------+--------------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT rodzaj FROM zasob;
++--------------------+
+| rodzaj             |
++--------------------+
+| jedzenie           |
+| narzedzie          |
+| NULL               |
+| ubranie            |
+| narzedzie zbrodni  |
+| material budowlany |
+| miejsce wypoczynku |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM kreatura;
++------------+----------------------------+---------+------------+------+--------+
+| idKreatury | nazwa                      | rodzaj  | dataUr     | waga | udzwig |
++------------+----------------------------+---------+------------+------+--------+
+|          1 | Bjorn                      | wiking  | 1670-04-01 |   99 |     80 |
+|          2 | Brutal                     | wiking  | 1672-12-24 |  120 |     85 |
+|          3 | Khorad                     | wiking  | 1671-07-15 |  105 |     81 |
+|          4 | Birgun                     | wiking  | 1675-05-11 |   88 |     66 |
+|          5 | Defgard                    | wiking  | 1674-07-05 |  100 |     72 |
+|          6 | Astrid                     | wiking  | 1677-08-18 |   75 |     49 |
+|          7 | Ibra                       | wiking  | 1674-02-03 |  105 |     87 |
+|          8 | Bjolkolur                  | wiking  | 1676-03-30 |  110 |     93 |
+|          9 | Nemo                       | ryba    | 1677-10-02 |    1 |      1 |
+|         10 | Loko                       | waz     | 1677-10-05 |    3 |      4 |
+|         11 | Drozd                      | ptak    | 1675-07-07 |    2 |      1 |
+|         12 | Ara                        | ptak    | 1676-05-05 |    2 |      1 |
+|         13 | Szczeki                    | ryba    | 1674-04-06 | 2100 |    600 |
+|         14 | Tesciowa                   | wiedzma | 1655-10-01 |   65 |     40 |
+|         15 | Tiki                       | malpa   | 1672-08-08 |   32 |     25 |
+|         16 | Dziadek                    | wiking  | 1645-01-23 |   54 |    100 |
+|         17 | sztuczna szczeka tesciowej | wiedzma | 1680-08-13 |    2 |      1 |
+|         18 | Tesciowa dziadka           | wiedzma | 1630-04-30 |   78 |     12 |
+|        100 | Babajaga                   | wiedzma | 1000-01-01 |   20 |   1000 |
++------------+----------------------------+---------+------------+------+--------+
+19 rows in set (0.00 sec)
+
+mysql> SELECT nazwa,rodzaj FROM kreatura WHERE rodzaj LIKE 'wi%';
++----------------------------+---------+
+| nazwa                      | rodzaj  |
++----------------------------+---------+
+| Bjorn                      | wiking  |
+| Brutal                     | wiking  |
+| Khorad                     | wiking  |
+| Birgun                     | wiking  |
+| Defgard                    | wiking  |
+| Astrid                     | wiking  |
+| Ibra                       | wiking  |
+| Bjolkolur                  | wiking  |
+| Tesciowa                   | wiedzma |
+| Dziadek                    | wiking  |
+| sztuczna szczeka tesciowej | wiedzma |
+| Tesciowa dziadka           | wiedzma |
+| Babajaga                   | wiedzma |
++----------------------------+---------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(nazwa,rodzaj) FROM kreatura WHERE rodzaj LIKE 'wi%';
++-----------------------------------+
+| CONCAT(nazwa,rodzaj)              |
++-----------------------------------+
+| Bjornwiking                       |
+| Brutalwiking                      |
+| Khoradwiking                      |
+| Birgunwiking                      |
+| Defgardwiking                     |
+| Astridwiking                      |
+| Ibrawiking                        |
+| Bjolkolurwiking                   |
+| Tesciowawiedzma                   |
+| Dziadekwiking                     |
+| sztuczna szczeka tesciowejwiedzma |
+| Tesciowa dziadkawiedzma           |
+| Babajagawiedzma                   |
++-----------------------------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(nazwa,' ',rodzaj) FROM kreatura WHERE rodzaj LIKE 'wi%';
++------------------------------------+
+| CONCAT(nazwa,' ',rodzaj)           |
++------------------------------------+
+| Bjorn wiking                       |
+| Brutal wiking                      |
+| Khorad wiking                      |
+| Birgun wiking                      |
+| Defgard wiking                     |
+| Astrid wiking                      |
+| Ibra wiking                        |
+| Bjolkolur wiking                   |
+| Tesciowa wiedzma                   |
+| Dziadek wiking                     |
+| sztuczna szczeka tesciowej wiedzma |
+| Tesciowa dziadka wiedzma           |
+| Babajaga wiedzma                   |
++------------------------------------+
+13 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE waga=ilosc*waga;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE waga=ilosc*waga;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE waga = ilosc * waga;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+8 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE waga = ilosc * waga;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+8 rows in set (0.00 sec)
+
+mysql> sa
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near 'sa' at line 1
+mysql> SELECT * FROM zasob WHERE waga = ilosc * waga;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+8 rows in set (0.00 sec)
+
+mysql> SELECT SUM('ilosc'*'waga') FROM zasob;
++---------------------+
+| SUM('ilosc'*'waga') |
++---------------------+
+|                   0 |
++---------------------+
+1 row in set, 56 warnings (0.00 sec)
+
+mysql> SELECT waga SUM('ilosc'*'waga') FROM zasob;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corres                                                                                                                                                       ponds to your MySQL server version for the right syntax to use near 'SUM('ilosc'*'waga                                                                                                                                                       ') FROM zasob' at line 1
+mysql> SELECT * FROM zasob WHERE waga = SUM('ilosc'*'waga');
+ERROR 1111 (HY000): Invalid use of group function
+mysql> SELECT CONCAT(waga*ilosc) FROM zasob;
++--------------------+
+| CONCAT(waga*ilosc) |
++--------------------+
+| 6.00               |
+| 13.00              |
+| 4.00               |
+| 14.00              |
+| 24.00              |
+| 30.00              |
+| 100.00             |
+| 30.00              |
+| 24.00              |
+| 24.00              |
+| 6.00               |
+| 12.00              |
+| 8.00               |
+| 4.00               |
+| 100.00             |
+| 210.00             |
+| 9.00               |
+| 3.00               |
+| 20.00              |
+| 3.00               |
+| 30.00              |
+| 60.00              |
+| 2.00               |
+| 2.00               |
+| 4.00               |
+| 4.00               |
+| 3.00               |
+| 7.00               |
++--------------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT nazwa,CONCAT(waga*ilosc) FROM zasob;
++-------------------+--------------------+
+| nazwa             | CONCAT(waga*ilosc) |
++-------------------+--------------------+
+| kokos             | 6.00               |
+| siekiera          | 13.00              |
+| kokos             | 4.00               |
+| kokos             | 14.00              |
+| banan             | 24.00              |
+| figa              | 30.00              |
+| krokodyl          | 100.00             |
+| bataty            | 30.00              |
+| opos              | 24.00              |
+| stanik            | 24.00              |
+| stanik            | 6.00               |
+| stanik            | 12.00              |
+| stanik            | 8.00               |
+| buty              | 4.00               |
+| lisc palmowy      | 100.00             |
+| skora geparda     | 210.00             |
+| kiel slonia       | 9.00               |
+| topor             | 3.00               |
+| dzida             | 20.00              |
+| luk               | 3.00               |
+| pnacza            | 30.00              |
+| deski             | 60.00              |
+| hamak             | 2.00               |
+| chatka na drzewie | 2.00               |
+| nie wiadomo co    | 4.00               |
+| ogien do ziania   | 4.00               |
+| miotla            | 3.00               |
+| banan             | 7.00               |
++-------------------+--------------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT nazwa,waga=CONCAT(waga*ilosc) FROM zasob;
++-------------------+-------------------------+
+| nazwa             | waga=CONCAT(waga*ilosc) |
++-------------------+-------------------------+
+| kokos             |                       0 |
+| siekiera          |                       1 |
+| kokos             |                       1 |
+| kokos             |                       0 |
+| banan             |                       0 |
+| figa              |                       0 |
+| krokodyl          |                       1 |
+| bataty            |                       0 |
+| opos              |                       0 |
+| stanik            |                       0 |
+| stanik            |                       0 |
+| stanik            |                       0 |
+| stanik            |                       0 |
+| buty              |                       0 |
+| lisc palmowy      |                       0 |
+| skora geparda     |                       0 |
+| kiel slonia       |                       0 |
+| topor             |                       1 |
+| dzida             |                       0 |
+| luk               |                       0 |
+| pnacza            |                       0 |
+| deski             |                       0 |
+| hamak             |                       1 |
+| chatka na drzewie |                       1 |
+| nie wiadomo co    |                       1 |
+| ogien do ziania   |                       0 |
+| miotla            |                       1 |
+| banan             |                       0 |
++-------------------+-------------------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT *, waga * ilosc FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +--------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    | waga * ilosc |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +--------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |         6.00 |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |        13.00 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |         4.00 |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |        14.00 |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |        24.00 |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |        30.00 |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |       100.00 |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |        30.00 |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |        24.00 |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |        24.00 |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |         6.00 |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |        12.00 |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |         8.00 |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |         4.00 |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |       100.00 |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |       210.00 |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |         9.00 |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |         3.00 |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |        20.00 |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |         3.00 |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |        30.00 |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |        60.00 |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |         2.00 |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |         2.00 |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |         4.00 |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |         4.00 |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |         3.00 |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |         7.00 |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +--------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT *, waga*ilosc FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    | waga*ilosc |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |       6.00 |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |      13.00 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |       4.00 |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |      14.00 |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |      24.00 |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |      30.00 |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |     100.00 |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |      30.00 |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |      24.00 |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |      24.00 |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |       6.00 |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |      12.00 |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |       8.00 |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |       4.00 |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |     100.00 |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |     210.00 |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |       9.00 |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |       3.00 |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |      20.00 |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |       3.00 |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |      30.00 |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |      60.00 |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |       2.00 |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |       2.00 |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |       4.00 |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |       4.00 |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |       3.00 |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |       7.00 |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT *,waga*ilosc FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------+------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             | waga*ilosc |
++----------+-------------------+--------+-------+----------------+--------------------+------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |       6.00 |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |      13.00 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |       4.00 |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |      14.00 |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |      24.00 |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |      30.00 |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |     100.00 |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |      30.00 |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |      24.00 |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL               |      24.00 |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL               |       6.00 |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL               |      12.00 |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL               |       8.00 |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |       4.00 |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |     100.00 |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |     210.00 |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |       9.00 |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |       3.00 |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |      20.00 |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |       3.00 |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |      30.00 |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |      60.00 |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |       2.00 |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |       2.00 |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL               |       4.00 |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL               |       4.00 |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL               |       3.00 |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |       7.00 |
++----------+-------------------+--------+-------+----------------+--------------------+------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT *,calkowita_waga=waga*ilosc FROM zasob;
+ERROR 1054 (42S22): Unknown column 'calkowita_waga' in 'field list'
+mysql> SELECT *,waga*ilosc FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------+------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             | waga*ilosc |
++----------+-------------------+--------+-------+----------------+--------------------+------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |       6.00 |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |      13.00 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |       4.00 |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |      14.00 |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |      24.00 |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |      30.00 |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |     100.00 |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |      30.00 |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |      24.00 |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL               |      24.00 |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL               |       6.00 |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL               |      12.00 |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL               |       8.00 |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |       4.00 |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |     100.00 |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |     210.00 |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |       9.00 |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |       3.00 |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |      20.00 |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |       3.00 |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |      30.00 |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |      60.00 |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |       2.00 |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |       2.00 |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL               |       4.00 |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL               |       4.00 |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL               |       3.00 |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |       7.00 |
++----------+-------------------+--------+-------+----------------+--------------------+------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT *,waga*ilosc FROM zasob WHERE YEAR(dataPozyskania) BETWEEN 2000 AND 2007;
++----------+-----------------+--------+-------+----------------+--------------------+------------+
+| idZasobu | nazwa           | waga   | ilosc | dataPozyskania | rodzaj             | waga*ilosc |
++----------+-----------------+--------+-------+----------------+--------------------+------------+
+|        1 | kokos           |   2.00 |     3 | 2007-07-23     | jedzenie           |       6.00 |
+|        3 | kokos           |   4.00 |     1 | 2004-09-03     | jedzenie           |       4.00 |
+|        6 | figa            |   1.00 |    30 | 2001-12-14     | jedzenie           |      30.00 |
+|        7 | krokodyl        | 100.00 |     1 | 2005-07-14     | jedzenie           |     100.00 |
+|        8 | bataty          |   1.00 |    30 | 2002-07-01     | jedzenie           |      30.00 |
+|        9 | opos            |  12.00 |     2 | 2006-08-01     | jedzenie           |      24.00 |
+|       10 | stanik          |   0.20 |   120 | 2004-06-01     | NULL               |      24.00 |
+|       11 | stanik          |   0.30 |    20 | 2004-06-15     | NULL               |       6.00 |
+|       12 | stanik          |   0.40 |    30 | 2004-07-15     | NULL               |      12.00 |
+|       15 | lisc palmowy    |   0.10 |  1000 | 2001-03-25     | ubranie            |     100.00 |
+|       17 | kiel slonia     |   1.00 |     9 | 2003-01-25     | ubranie            |       9.00 |
+|       18 | topor           |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |       3.00 |
+|       19 | dzida           |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |      20.00 |
+|       20 | luk             |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |       3.00 |
+|       23 | hamak           |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |       2.00 |
+|       25 | nie wiadomo co  |   4.00 |     1 | 2001-08-10     | NULL               |       4.00 |
+|       26 | ogien do ziania |   1.00 |     4 | 2002-08-10     | NULL               |       4.00 |
+|       27 | miotla          |   3.00 |     1 | 2005-10-10     | NULL               |       3.00 |
++----------+-----------------+--------+-------+----------------+--------------------+------------+
+18 rows in set (0.00 sec)
+
+mysql> SELECT 'waga*0,3' FROM zasob WHERE rodzaj='jedzenie';
++----------+
+| waga*0,3 |
++----------+
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
+| waga*0,3 |
++----------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT waga*0,3 FROM zasob WHERE rodzaj='jedzenie';
++--------+---+
+| waga*0 | 3 |
++--------+---+
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
+|   0.00 | 3 |
++--------+---+
+9 rows in set (0.00 sec)
+
+mysql> SELECT *,waga*ilosc*0.7,waga*ilosc*0.3 FROM zasob WHERE rodzaj='jedzenie';
++----------+----------+--------+-------+----------------+----------+----------------+-                                                                                                                                                       ---------------+
+| idZasobu | nazwa    | waga   | ilosc | dataPozyskania | rodzaj   | waga*ilosc*0.7 |                                                                                                                                                        waga*ilosc*0.3 |
++----------+----------+--------+-------+----------------+----------+----------------+-                                                                                                                                                       ---------------+
+|        1 | kokos    |   2.00 |     3 | 2007-07-23     | jedzenie |           4.20 |                                                                                                                                                                  1.80 |
+|        3 | kokos    |   4.00 |     1 | 2004-09-03     | jedzenie |           2.80 |                                                                                                                                                                  1.20 |
+|        4 | kokos    |   7.00 |     2 | 2010-10-13     | jedzenie |           9.80 |                                                                                                                                                                  4.20 |
+|        5 | banan    |   2.00 |    12 | 2015-11-09     | jedzenie |          16.80 |                                                                                                                                                                  7.20 |
+|        6 | figa     |   1.00 |    30 | 2001-12-14     | jedzenie |          21.00 |                                                                                                                                                                  9.00 |
+|        7 | krokodyl | 100.00 |     1 | 2005-07-14     | jedzenie |          70.00 |                                                                                                                                                                 30.00 |
+|        8 | bataty   |   1.00 |    30 | 2002-07-01     | jedzenie |          21.00 |                                                                                                                                                                  9.00 |
+|        9 | opos     |  12.00 |     2 | 2006-08-01     | jedzenie |          16.80 |                                                                                                                                                                  7.20 |
+|       28 | banan    |   1.00 |     7 | 2008-08-21     | jedzenie |           4.90 |                                                                                                                                                                  2.10 |
++----------+----------+--------+-------+----------------+----------+----------------+-                                                                                                                                                       ---------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT *,waga*ilosc*0.7,waga*ilosc*0.3 FROM zasob WHERE rodzaj='jedzenie';
++----------+----------+--------+-------+----------------+----------+----------------+----------------+
+| idZasobu | nazwa    | waga   | ilosc | dataPozyskania | rodzaj   | waga*ilosc*0.7 | waga*ilosc*0.3 |
++----------+----------+--------+-------+----------------+----------+----------------+----------------+
+|        1 | kokos    |   2.00 |     3 | 2007-07-23     | jedzenie |           4.20 |           1.80 |
+|        3 | kokos    |   4.00 |     1 | 2004-09-03     | jedzenie |           2.80 |           1.20 |
+|        4 | kokos    |   7.00 |     2 | 2010-10-13     | jedzenie |           9.80 |           4.20 |
+|        5 | banan    |   2.00 |    12 | 2015-11-09     | jedzenie |          16.80 |           7.20 |
+|        6 | figa     |   1.00 |    30 | 2001-12-14     | jedzenie |          21.00 |           9.00 |
+|        7 | krokodyl | 100.00 |     1 | 2005-07-14     | jedzenie |          70.00 |          30.00 |
+|        8 | bataty   |   1.00 |    30 | 2002-07-01     | jedzenie |          21.00 |           9.00 |
+|        9 | opos     |  12.00 |     2 | 2006-08-01     | jedzenie |          16.80 |           7.20 |
+|       28 | banan    |   1.00 |     7 | 2008-08-21     | jedzenie |           4.90 |           2.10 |
++----------+----------+--------+-------+----------------+----------+----------------+----------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT *,waga*ilosc*0.7 AS 'waga wlasciwa',waga*ilosc*0.3 AS 'waga odpadu' FROM zasob WHERE rodzaj='jedzenie';
++----------+----------+--------+-------+----------------+----------+---------------+-------------+
+| idZasobu | nazwa    | waga   | ilosc | dataPozyskania | rodzaj   | waga wlasciwa | waga odpadu |
++----------+----------+--------+-------+----------------+----------+---------------+-------------+
+|        1 | kokos    |   2.00 |     3 | 2007-07-23     | jedzenie |          4.20 |        1.80 |
+|        3 | kokos    |   4.00 |     1 | 2004-09-03     | jedzenie |          2.80 |        1.20 |
+|        4 | kokos    |   7.00 |     2 | 2010-10-13     | jedzenie |          9.80 |        4.20 |
+|        5 | banan    |   2.00 |    12 | 2015-11-09     | jedzenie |         16.80 |        7.20 |
+|        6 | figa     |   1.00 |    30 | 2001-12-14     | jedzenie |         21.00 |        9.00 |
+|        7 | krokodyl | 100.00 |     1 | 2005-07-14     | jedzenie |         70.00 |       30.00 |
+|        8 | bataty   |   1.00 |    30 | 2002-07-01     | jedzenie |         21.00 |        9.00 |
+|        9 | opos     |  12.00 |     2 | 2006-08-01     | jedzenie |         16.80 |        7.20 |
+|       28 | banan    |   1.00 |     7 | 2008-08-21     | jedzenie |          4.90 |        2.10 |
++----------+----------+--------+-------+----------------+----------+---------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE rodzaj='NULL';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj                                                                                                                                                                    |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie                                                                                                                                                                  |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie                                                                                                                                                                 |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie                                                                                                                                                                  |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie                                                                                                                                                                  |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie                                                                                                                                                                  |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie                                                                                                                                                                  |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie                                                                                                                                                                  |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie                                                                                                                                                                  |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie                                                                                                                                                                  |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL                                                                                                                                                                      |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL                                                                                                                                                                      |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL                                                                                                                                                                      |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL                                                                                                                                                                      |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie                                                                                                                                                                   |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie                                                                                                                                                                   |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie                                                                                                                                                                   |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie                                                                                                                                                                   |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni                                                                                                                                                         |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni                                                                                                                                                         |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni                                                                                                                                                         |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany                                                                                                                                                        |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany                                                                                                                                                        |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku                                                                                                                                                        |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku                                                                                                                                                        |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL                                                                                                                                                                      |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL                                                                                                                                                                      |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL                                                                                                                                                                      |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie                                                                                                                                                                  |
++----------+-------------------+--------+-------+----------------+--------------------                                                                                                                                                       +
+28 rows in set (0.00 sec)
+
+mysql> mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+--------+-------+----------------+--------------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL               |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL               |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL               |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL               |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL               |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL               |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL               |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |
++----------+-------------------+--------+-------+----------------+--------------------+
+28 rows in set (0.01 sec)
+
+mysql> SELECT * FROM zasob WHERE rodzaj='NULL';
+Empty set (0.00 sec)
+
+mysql> SELECT * FROM zasob WHERE rodzaj=NULL;
+Empty set (0.01 sec)
+
+mysql> SELECT * FROM zasob WHERE rodzaj IS NULL;
++----------+-----------------+------+-------+----------------+--------+
+| idZasobu | nazwa           | waga | ilosc | dataPozyskania | rodzaj |
++----------+-----------------+------+-------+----------------+--------+
+|       10 | stanik          | 0.20 |   120 | 2004-06-01     | NULL   |
+|       11 | stanik          | 0.30 |    20 | 2004-06-15     | NULL   |
+|       12 | stanik          | 0.40 |    30 | 2004-07-15     | NULL   |
+|       13 | stanik          | 0.20 |    40 | 2012-08-15     | NULL   |
+|       25 | nie wiadomo co  | 4.00 |     1 | 2001-08-10     | NULL   |
+|       26 | ogien do ziania | 1.00 |     4 | 2002-08-10     | NULL   |
+|       27 | miotla          | 3.00 |     1 | 2005-10-10     | NULL   |
++----------+-----------------+------+-------+----------------+--------+
+7 rows in set (0.00 sec)
+
+mysql>
+[1]+  Stopped                 mysql -u siwekp -p
+siwekp@bad2:~$
+siwekp@bad2:~$
+siwekp@bad2:~$ mysql -u siwekp -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1458
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| siwekp             |
+| wikingowie         |
++--------------------+
+3 rows in set (0.01 sec)
+
+mysql> use siwekp;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++------------------+
+| Tables_in_siwekp |
++------------------+
+| ekwipunek        |
+| kreatura         |
+| marynarz         |
+| postac           |
+| pracownik        |
+| projekt          |
+| przetwory        |
+| statek           |
+| walizka          |
+| zasob            |
++------------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM zasob;
++----------+-------------------+--------+-------+----------------+--------------------+
+| idZasobu | nazwa             | waga   | ilosc | dataPozyskania | rodzaj             |
++----------+-------------------+--------+-------+----------------+--------------------+
+|        1 | kokos             |   2.00 |     3 | 2007-07-23     | jedzenie           |
+|        2 | siekiera          |  13.00 |     1 | 1974-01-04     | narzedzie          |
+|        3 | kokos             |   4.00 |     1 | 2004-09-03     | jedzenie           |
+|        4 | kokos             |   7.00 |     2 | 2010-10-13     | jedzenie           |
+|        5 | banan             |   2.00 |    12 | 2015-11-09     | jedzenie           |
+|        6 | figa              |   1.00 |    30 | 2001-12-14     | jedzenie           |
+|        7 | krokodyl          | 100.00 |     1 | 2005-07-14     | jedzenie           |
+|        8 | bataty            |   1.00 |    30 | 2002-07-01     | jedzenie           |
+|        9 | opos              |  12.00 |     2 | 2006-08-01     | jedzenie           |
+|       10 | stanik            |   0.20 |   120 | 2004-06-01     | NULL               |
+|       11 | stanik            |   0.30 |    20 | 2004-06-15     | NULL               |
+|       12 | stanik            |   0.40 |    30 | 2004-07-15     | NULL               |
+|       13 | stanik            |   0.20 |    40 | 2012-08-15     | NULL               |
+|       14 | buty              |   2.00 |     2 | 2010-08-15     | ubranie            |
+|       15 | lisc palmowy      |   0.10 |  1000 | 2001-03-25     | ubranie            |
+|       16 | skora geparda     |  30.00 |     7 | 2013-07-25     | ubranie            |
+|       17 | kiel slonia       |   1.00 |     9 | 2003-01-25     | ubranie            |
+|       18 | topor             |   3.00 |     1 | 2000-01-25     | narzedzie zbrodni  |
+|       19 | dzida             |   2.00 |    10 | 2001-03-21     | narzedzie zbrodni  |
+|       20 | luk               |   1.00 |     3 | 2003-04-17     | narzedzie zbrodni  |
+|       21 | pnacza            |   0.10 |   300 | 2010-02-17     | material budowlany |
+|       22 | deski             |   0.50 |   120 | 2008-02-17     | material budowlany |
+|       23 | hamak             |   2.00 |     1 | 2001-01-17     | miejsce wypoczynku |
+|       24 | chatka na drzewie |   2.00 |     1 | 2012-08-17     | miejsce wypoczynku |
+|       25 | nie wiadomo co    |   4.00 |     1 | 2001-08-10     | NULL               |
+|       26 | ogien do ziania   |   1.00 |     4 | 2002-08-10     | NULL               |
+|       27 | miotla            |   3.00 |     1 | 2005-10-10     | NULL               |
+|       28 | banan             |   1.00 |     7 | 2008-08-21     | jedzenie           |
++----------+-------------------+--------+-------+----------------+--------------------+
+28 rows in set (0.00 sec)
+
+mysql> SELECT DISTINCT nazwa FROM zasob WHERE nazwa LIKE 'Ba%' OR '%os' ORDER BY nazwa;
++--------+
+| nazwa  |
++--------+
+| banan  |
+| bataty |
++--------+
+2 rows in set, 1 warning (0.00 sec)
+
+mysql> SELECT DISTINCT nazwa FROM zasob WHERE nazwa LIKE 'Ba%' AND '%os' ORDER BY nazwa;
+Empty set, 1 warning (0.00 sec)
+
+mysql> SELECT DISTINCT nazwa FROM zasob WHERE nazwa LIKE 'Ba%' OR nazwa LIKE '%os' ORDER BY nazwa;
++--------+
+| nazwa  |
++--------+
+| banan  |
+| bataty |
+| kokos  |
+| opos   |
++--------+
+4 rows in set (0.00 sec)
