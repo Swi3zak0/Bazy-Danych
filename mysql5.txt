@@ -1,0 +1,33 @@
+Zadanie 1
+
+1.1
+SELECT AVG(waga) FROM kreatura WHERE rodzaj='wiking';
+1.2
+SELECT AVG(waga),COUNT(idKreatury),rodzaj FROM kreatura GROUP BY rodzaj;
+1.3
+SELECT AVG(YEAR(CURRENT_TIMESTAMP) - YEAR(dataUr)),rodzaj FROM kreatura GROUP BY rodzaj;
+
+Zadanie 2
+
+2.1
+SELECT SUM(waga) AS waga,rodzaj FROM zasob GROUP BY rodzaj;
+2.2
+SELECT AVG(waga) as 'srednia waga', nazwa FROM zasob GROUP BY nazwa HAVING AVG(ilosc)>=4 AND SUM(waga)>10;
+2.3
+SELECT COUNT(DISTINCT (nazwa)),rodzaj FROM zasob GROUP BY rodzaj HAVING MIN(ilosc)>1;
+
+Zadanie 3
+
+3.1
+SELECT kreatura.nazwa,ekwipunek.ilosc FROM kreatura INNER JOIN ekwipunek ON kreatura.                                                                                                                                                 idKreatury = ekwipunek.idKreatury;
+3.2
+SELECT kreatura.nazwa, zasob.nazwa, ekwipunek.idZasobu FROM ekwipunek INNER JOIN kreatura ON kreatura.idKreatury=ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu=zasob.idZasobu;
+3.3
+SELECT kreatura.nazwa, ekwipunek.idEkwipunku FROM kreatura LEFT JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury WHERE idEkwipunku IS NULL;
+
+Zadanie 4
+
+4.1
+SELECT kreatura.nazwa, zasob.nazwa, kreatura.dataUr FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu WHERE YEAR(dataUr) BETWEEN 1670 AND 1679;
+4.2
+
