@@ -30,4 +30,10 @@ Zadanie 4
 4.1
 SELECT kreatura.nazwa, zasob.nazwa, kreatura.dataUr FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu WHERE YEAR(dataUr) BETWEEN 1670 AND 1679;
 4.2
+SELECT DISTINCT kreatura.nazwa as 'Kreatury posiadajace jedzenie',kreatura.DataUr FROM kreatura INNER JOIN ekwipunek ON kreatura.idKreatury = ekwipunek.idKreatury INNER JOIN zasob ON zasob.idZasobu = ekwipunek.idZasobu WHERE zasob.rodzaj = 'jedzenie' ORDER BY DataUr DESC LIMIT 5;
+4.3
+SELECT CONCAT (k1.nazwa, ' ',k2.nazwa) FROM kreatura k1 INNER JOIN kreatura k2 ON k2.idKreatury=k1.idKreatury+5;
 
+Zadanie 5
+5.1
+SELECT kreatura.nazwa,AVG(zasob.waga) FROM ekwipunek INNER JOIN kreatura ON kreatura.idKreatury=ekwipunek.idKreatury INNER JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj !='malpa' AND kreatura.rodzaj!='waz' GROUP BY kreatura.nazwa HAVING SUM(ekwipunek.ilosc)<30;
